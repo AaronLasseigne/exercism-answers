@@ -1,4 +1,5 @@
-(ns bob)
+(ns bob
+  (:require [clojure.string :refer [upper-case]]))
 
 (defn- silent?
   [message]
@@ -6,7 +7,7 @@
 
 (defn- shout?
   [message]
-  (= message (clojure.string/upper-case message)))
+  (= message (upper-case message)))
 
 (defn- ask?
   [message]
