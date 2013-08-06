@@ -43,7 +43,7 @@ end
 
 class Ask < MessageType
   def self.describes?(message)
-    message =~ /\?\z/
+    message.end_with?('?')
   end
 
   def self.response
