@@ -4,16 +4,14 @@ defmodule Words do
   end
   defp count(text, tally) do
     case next_word(text) do
-      {:ok, word, nil} ->
-        mark(tally, word)
       {:ok, word, rest} ->
         mark(count(rest, tally), word)
-      nil ->
+      {:no_more_words} ->
         tally
     end
   end
 
-  defp next_word(nil), do: nil
+  defp next_word(nil), do: {:no_more_words}
   defp next_word(text) do
     [word | rest] = String.split(text, %r/[[:^alnum:]]+/u, global: false)
 
