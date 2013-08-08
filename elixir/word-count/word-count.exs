@@ -1,33 +1,14 @@
 defmodule Words do
   def count(text) do
-    count(text, HashDict.new)
-  end
-  defp count(text, tally) do
-    case next_word(text) do
-      {:ok, word, rest} ->
-        mark(count(rest, tally), word)
-      {:no_more_words} ->
-        tally
-    end
+    List.foldl(words(text), HashDict.new, &mark/2)
   end
 
-  defp next_word(nil), do: {:no_more_words}
-  defp next_word(text) do
-    [word | rest] = String.split(text, %r/[[:^alnum:]]+/u, global: false)
-
-    rest = Enum.first(rest)
-
-    if word == "" do
-      next_word(rest)
-    else
-      {:ok, word, rest}
-    end
+  defp words(text) do
+    List.flatten(Regex.scan(%r/[[:alnum:]]+/u, text))
   end
 
-  defp mark(tally, word) do
-    HashDict.update tally, normalize(word), 1, fn(marks) ->
-      marks + 1
-    end
+  defp mark(word, tally) do
+    HashDict.update(tally, normalize(word), 1, &1 + 1)
   end
 
   defp normalize(word) do
