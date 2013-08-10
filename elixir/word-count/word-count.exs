@@ -4,11 +4,11 @@ defmodule Words do
   end
 
   defp words(text) do
-    List.flatten(Regex.scan(%r/[[:alnum:]]+/u, text))
+    List.flatten(Regex.scan(%r/[[:alnum:]]+/u, normalize(text)))
   end
 
   defp mark(word, tally) do
-    HashDict.update(tally, normalize(word), 1, &1 + 1)
+    HashDict.update(tally, word, 1, &1 + 1)
   end
 
   defp normalize(word) do
