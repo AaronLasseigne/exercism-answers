@@ -4,7 +4,7 @@ class Anagram
   end
 
   def match(words)
-    @words ||= words.select do |word|
+    words.select do |word|
       subject == AnagramWord.new(word)
     end
   end
