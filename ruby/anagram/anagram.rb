@@ -30,7 +30,7 @@ class Anagram
   end
 
   def sort_characters(word)
-    word.split('').sort
+    word.chars.sort
   end
 
   def normalized_subject
