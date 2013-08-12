@@ -1,43 +1,47 @@
 class Anagram
   def initialize(subject)
-    @subject = subject
+    @subject = AnagramWord.new(subject)
   end
 
   def match(words)
     @words ||= words.select do |word|
-      anagram?(word)
+      subject == AnagramWord.new(word)
     end
   end
 
   private
 
   attr_reader :subject
+end
 
-  def anagram?(word)
-    !same?(word) && same_letters?(word)
+class AnagramWord
+  def initialize(word)
+    @word = word
   end
 
-  def same?(word)
-    normalized_subject == normalize(word)
+  def ==(other)
+    !same?(other) && same_chars?(other)
   end
 
-  def same_letters?(word)
-    sorted_normalized_subject == sort_characters(normalize(word))
-  end
+  protected
 
-  def normalize(word)
+  def normalize
     word.downcase
   end
 
-  def sort_characters(word)
-    word.chars.sort
+  def sorted_chars
+    normalize.chars.sort
   end
 
-  def normalized_subject
-    @normalized_subject ||= normalize(subject)
+  private
+
+  attr_reader :word
+
+  def same?(other)
+    normalize == other.normalize
   end
 
-  def sorted_normalized_subject
-    @sorted_normalized_subject ||= sort_characters(normalized_subject)
+  def same_chars?(other)
+    sorted_chars == other.sorted_chars
   end
 end
