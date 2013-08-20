@@ -1,16 +1,16 @@
 defmodule Anagram do
   def match(subject, words) do
-    Enum.filter(words, anagram?(subject, &1))
+    normalized_subject = normalize(subject)
+
+    Enum.filter(words, anagram?(normalized_subject, &1))
   end
 
-  defp anagram?(subject, word) do
-    normalize(subject) == normalize(word)
+  defp anagram?(normalized_subject, word) do
+    normalized_subject == normalize(word)
   end
 
   defp normalize(word) do
-    Regex.scan(%r/./, word)
-    |> List.flatten
+    String.codepoints(word)
     |> Enum.sort
-    |> Enum.join
   end
 end
