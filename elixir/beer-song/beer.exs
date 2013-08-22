@@ -23,10 +23,9 @@ defmodule Beer do
       "Take #{noun} down and pass it around"
     end
 
-    "#{line}, #{bottles(remaining - 1)} of beer on the wall.\n"
+    "#{line}, #{bottles(if remaining == 0, do: 99, else: remaining - 1)} of beer on the wall.\n"
   end
 
-  defp bottles(-1),        do: "99 bottles"
   defp bottles(0),         do: "no more bottles"
   defp bottles(1),         do: "1 bottle"
   defp bottles(remaining), do: Enum.join([remaining, "bottles"], " ")
