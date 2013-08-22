@@ -1,6 +1,6 @@
 defmodule Beer do
   def verse(bottles) do
-    Enum.join([first_line(bottles), second_line(bottles), ""], "\n")
+    first_line(bottles) <> second_line(bottles)
   end
 
   def sing(beginning, ending // 0) when beginning == ending do
@@ -11,7 +11,7 @@ defmodule Beer do
   end
 
   defp first_line(remaining) do
-    "#{String.capitalize(bottles(remaining))} of beer on the wall, #{bottles(remaining)} of beer."
+    "#{String.capitalize(bottles(remaining))} of beer on the wall, #{bottles(remaining)} of beer.\n"
   end
 
   defp second_line(remaining) do
@@ -23,7 +23,7 @@ defmodule Beer do
       "Take #{noun} down and pass it around"
     end
 
-    Enum.join([line, ", #{bottles(remaining - 1)} of beer on the wall."], '')
+    "#{line}, #{bottles(remaining - 1)} of beer on the wall.\n"
   end
 
   defp bottles(-1),        do: "99 bottles"
