@@ -28,5 +28,5 @@ defmodule Beer do
 
   defp bottles(0),         do: "no more bottles"
   defp bottles(1),         do: "1 bottle"
-  defp bottles(remaining), do: Enum.join([remaining, "bottles"], " ")
+  defp bottles(remaining), do: "#{remaining} bottles"
 end
