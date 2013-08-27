@@ -8,11 +8,10 @@ module Nucleotide
       class_name[0]
     end
 
-    private
-
     def self.class_name
       name.split('::').last
     end
+    private_class_method :class_name
   end
 
   class Adenine  < Base; end
