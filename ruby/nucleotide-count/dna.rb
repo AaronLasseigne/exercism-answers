@@ -11,7 +11,7 @@ module Nucleotide
     private
 
     def self.class_name
-      name[/::([a-z]+)\z/i, 1]
+      name.split('::').last
     end
   end
 
