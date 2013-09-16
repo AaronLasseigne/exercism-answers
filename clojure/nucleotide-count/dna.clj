@@ -1,4 +1,5 @@
-(ns dna)
+(ns dna
+  (:refer-clojure :exclude [count]))
 
 (def nucleotides
   ^{:private true}
