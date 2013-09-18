@@ -3,14 +3,11 @@
 
 (def nucleotides
   ^{:private true}
-  {\A 0,
-   \C 0,
-   \G 0,
-   \T 0})
+  #{\A \C \G \T})
 
 (defn nucleotide-counts
   [chain]
-  (merge nucleotides (frequencies chain)))
+  (merge (zipmap nucleotides (repeat 0)) (frequencies chain)))
 
 (defn count
   [nucleotide chain]
