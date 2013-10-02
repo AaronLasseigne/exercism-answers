@@ -5,7 +5,5 @@ defmodule DNA do
     |> Enum.count &non_matching_pair?/1
   end
 
-  defp non_matching_pair?(nucleotides) do
-    elem(nucleotides, 0) != elem(nucleotides, 1)
-  end
+  defp non_matching_pair?({a, b}), do: a != b
 end
