@@ -1,13 +1,14 @@
 defmodule Phone do
-  @bad_number "0000000000"
+  @length 10
+  @bad_number String.duplicate("0", @length)
 
   def number(digits) do
     digits = scrub_formatting(digits)
 
     cond do
-      String.length(digits) == 10 ->
+      String.length(digits) == @length ->
         digits
-      String.length(digits) == 11 && valid_country_code?(digits) ->
+      String.length(digits) == @length + 1 && valid_country_code?(digits) ->
         remove_country_code(digits)
       true ->
         @bad_number
