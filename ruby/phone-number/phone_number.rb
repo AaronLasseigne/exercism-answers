@@ -19,7 +19,7 @@ class PhoneNumber
   private
 
   def extract_number(input)
-    input = input.gsub(/\D/, '')
+    input = input.gsub(/\D+/, '')
 
     if input.length == LENGTH
       input
