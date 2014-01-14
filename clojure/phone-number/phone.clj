@@ -27,10 +27,10 @@
   [digits]
   (subs (number digits) 3 6))
 
-(defn- suffix
+(defn- subscriber
   [digits]
   (subs (number digits) 6))
 
 (defn pretty-print
   [digits]
-  (format "(%s) %s-%s" (area-code digits) (exchange digits) (suffix digits)))
+  (format "(%s) %s-%s" (area-code digits) (exchange digits) (subscriber digits)))
