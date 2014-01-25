@@ -8,15 +8,17 @@
   [number]
   (string/replace number #"[^0-9]+" ""))
 
+(defn- phone-with-us-or-ca-country-code?
+  [digits]
+  (and (= (count digits) (+ length 1))
+       (= (subs digits 0 1) "1")))
+
 (defn number
   [digits]
   (let [digits (clean digits)]
     (cond
       (= (count digits) length) digits
-      (and
-        (= (count digits) (+ length 1))
-        (= (subs digits 0 1) "1")
-      ) (subs digits 1)
+      (= (phone-with-us-or-ca-country-code? digits) true) (subs digits 1)
       :else bad-number)))
 
 (defn area-code
