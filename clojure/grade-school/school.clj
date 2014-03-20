@@ -10,7 +10,7 @@
 
 (defn- sort-students
   [students _]
-  (into [] (sort students)))
+  (vec (sort students)))
 
 (defn sorted
   [db]
