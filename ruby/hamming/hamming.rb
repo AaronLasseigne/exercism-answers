@@ -1,7 +1,7 @@
 class Hamming
   def self.compute(a, b)
-    a = a.split('')
-    b = b.split('')
+    a = a.chars
+    b = b.chars
 
     a, b = b, a if b.size < a.size
 
