@@ -1,4 +1,4 @@
-class Hamming
+module Hamming
   def self.compute(a, b)
     a = a.chars
     b = b.chars
