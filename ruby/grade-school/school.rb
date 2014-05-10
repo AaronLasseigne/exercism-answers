@@ -12,8 +12,8 @@ class School
   end
 
   def to_hash
-    @roster.sort.each_with_object({}) do |(level, names), h|
-      h[level] = names.sort
+    @roster.keys.sort.each_with_object({}) do |level, h|
+      h[level] = grade(level)
     end
   end
 end
