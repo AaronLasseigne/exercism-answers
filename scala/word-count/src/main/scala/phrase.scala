@@ -4,6 +4,6 @@ class Phrase(phrase: String) {
     .mapValues { v => v.size }
 
   private def words = phrase
-    .split("""(?i)[^a-z0-9']+""")
+    .split("(?i)[^a-z0-9']+")
     .map { _.toLowerCase }
 }
