@@ -1,0 +1,28 @@
+class Proverb
+  def initialize(*nouns, qualifier: '')
+    @nouns = nouns
+    @qualifier = qualifier
+  end
+
+  def to_s
+    @to_s ||= sentences(@nouns).push(conclusion(@nouns.first)).join("\n")
+  end
+
+  private
+
+  def sentence(a, b)
+    "For want of a #{a} the #{b} was lost."
+  end
+
+  def sentences(nouns)
+    nouns.map.with_index { |noun, i| sentence(noun, nouns[i + 1]) }[0..-2]
+  end
+
+  def conclusion(noun)
+    "And all for the want of a #{qualified(noun)}."
+  end
+
+  def qualified(noun)
+    "#{@qualifier} #{noun}".strip
+  end
+end
