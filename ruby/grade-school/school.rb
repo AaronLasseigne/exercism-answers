@@ -4,7 +4,7 @@ class School
   end
 
   def add(name, level)
-    @roster[level].push(name)
+    @roster[level] << name
   end
 
   def grade(level)
