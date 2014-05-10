@@ -15,7 +15,7 @@ class Proverb
   end
 
   def sentences(nouns)
-    nouns.map.with_index { |noun, i| sentence(noun, nouns[i + 1]) }[0..-2]
+    nouns.each_cons(2).map { |a, b| sentence(a, b) }
   end
 
   def conclusion(noun)
