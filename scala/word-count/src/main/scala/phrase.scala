@@ -1,9 +1,9 @@
 class Phrase(phrase: String) {
-  def wordCount = words
-    .groupBy { word => word }
-    .mapValues { _.size }
-
-  private def words = phrase
+  private val words = phrase
     .split("(?i)[^a-z0-9']+")
-    .map { _.toLowerCase }
+    .map(_.toLowerCase)
+
+  def wordCount = words
+    .groupBy(identity)
+    .mapValues(_.size)
 }
