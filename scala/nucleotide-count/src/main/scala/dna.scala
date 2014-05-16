@@ -1,9 +1,5 @@
 class DNA(strand: String) {
-  private val nucleotides = Set('A', 'T', 'G', 'C')
-
-  private def validate(nucleotide: Char) = nucleotides.contains(nucleotide)
-
-  require(strand.forall(validate(_)))
+  require(strand.forall(DNA.validate(_)))
 
   def count(nucleotide: Char) = nucleotide match {
     case 'U' => 0
@@ -14,7 +10,13 @@ class DNA(strand: String) {
   }
 
   def nucleotideCounts =
-    nucleotides.map { nucleotide =>
+    DNA.nucleotides.map { nucleotide =>
       (nucleotide -> count(nucleotide))
     }.toMap
+}
+
+object DNA {
+  private val nucleotides = Set('A', 'T', 'G', 'C')
+
+  private def validate(nucleotide: Char) = DNA.nucleotides.contains(nucleotide)
 }
