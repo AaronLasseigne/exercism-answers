@@ -7,7 +7,7 @@ class DNA(strand: String) {
     strand.count { _ == nucleotide }
   }
 
-  def nucleotideCounts =
+  lazy val nucleotideCounts =
     DNA.nucleotides.map { nucleotide =>
       (nucleotide -> count(nucleotide))
     }.toMap
