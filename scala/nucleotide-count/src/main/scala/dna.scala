@@ -1,12 +1,10 @@
 class DNA(strand: String) {
   require(strand.forall(DNA.validate(_)))
 
-  def count(nucleotide: Char) = nucleotide match {
-    case 'U' => 0
-    case nucleotide if validate(nucleotide) =>
-      strand.count { _ == nucleotide }
-    case _ =>
-      throw new IllegalArgumentException
+  def count(nucleotide: Char) = {
+    require(nucleotide == 'U' || DNA.validate(nucleotide))
+
+    strand.count { _ == nucleotide }
   }
 
   def nucleotideCounts =
