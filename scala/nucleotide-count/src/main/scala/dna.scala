@@ -4,12 +4,12 @@ class DNA(strand: String) {
   def count(nucleotide: Char) = {
     require(nucleotide == 'U' || DNA.validate(nucleotide))
 
-    strand.count { _ == nucleotide }
+    nucleotideCounts.getOrElse(nucleotide, 0)
   }
 
   lazy val nucleotideCounts =
     DNA.nucleotides.map { nucleotide =>
-      (nucleotide -> count(nucleotide))
+      (nucleotide -> strand.count(_ == nucleotide))
     }.toMap
 }
 
