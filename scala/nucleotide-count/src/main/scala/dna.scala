@@ -1,8 +1,8 @@
 class DNA(strand: String) {
-  require(strand.forall(DNA.validate(_)))
+  require(DNA.validNucleotideStrand(strand))
 
   def count(nucleotide: Char) = {
-    require(nucleotide == 'U' || DNA.validate(nucleotide))
+    require(DNA.validNucleotide(nucleotide) || nucleotide == 'U')
 
     nucleotideCounts.getOrElse(nucleotide, 0)
   }
@@ -16,5 +16,9 @@ class DNA(strand: String) {
 object DNA {
   private val nucleotides = Set('A', 'T', 'G', 'C')
 
-  private def validate(nucleotide: Char) = DNA.nucleotides.contains(nucleotide)
+  private def validNucleotide(nucleotide: Char) =
+    nucleotides.contains(nucleotide)
+
+  private def validNucleotideStrand(strand: String) =
+    strand.forall { validNucleotide(_) }
 }
