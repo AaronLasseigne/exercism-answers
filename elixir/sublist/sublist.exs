@@ -7,16 +7,16 @@ defmodule Sublist do
     cond do
       a === b ->
         :equal
-      contains(a, b) ->
+      contains?(a, b) ->
         :superlist
-      contains(b, a) ->
+      contains?(b, a) ->
         :sublist
       true ->
         :unequal
     end
   end
 
-  defp contains(full, sub) do
+  defp contains?(full, sub) do
     sub_count = Enum.count(sub)
 
     cond do
@@ -26,7 +26,7 @@ defmodule Sublist do
         true
       true ->
         [_ | t] = full
-        contains(t, sub)
+        contains?(t, sub)
     end
   end
 end
