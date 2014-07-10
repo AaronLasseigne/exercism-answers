@@ -1,7 +1,13 @@
 (ns etl)
 
-(defn- transform-helper [data [score values]]
-  (merge data (zipmap (map #(.toLowerCase %1) values) (repeat score))))
+(defn- lower-case [values]
+  (map #(.toLowerCase %1) values))
+
+(defn- map-keys-to-value [keys value]
+  (zipmap keys (repeat value)))
 
 (defn transform [data]
-  (reduce transform-helper {} data))
+  (reduce
+    (fn [data [key values]]
+      (merge data (map-keys-to-value (lower-case values) key)))
+  {} data))
