@@ -1,11 +1,11 @@
 (ns meetup
   (:import (java.util Calendar)))
 
-(defn- to-cal [year month day]
+(defn- build-cal [year month day]
   (doto (Calendar/getInstance)
     (.set year (dec month) day)))
 
-(defn- to-vec [cal]
+(defn- cal->vec [cal]
   [(.get cal Calendar/YEAR)
    (inc (.get cal Calendar/MONTH))
    (.get cal Calendar/DAY_OF_MONTH)])
@@ -14,9 +14,9 @@
   (= (.get cal Calendar/DAY_OF_WEEK) day-of-week))
 
 (defn- next-day-of-week [day-of-week step year month day]
-  (loop [cal (to-cal year month day)]
+  (loop [cal (build-cal year month day)]
     (if (on-a? cal day-of-week) 
-      (to-vec cal)
+      (cal->vec cal)
       (do
         (.add cal Calendar/DAY_OF_WEEK step)
         (recur cal)))))
