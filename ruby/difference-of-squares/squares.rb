@@ -4,7 +4,7 @@ class Squares
   end
 
   def sum_of_squares
-    @sum_of_squares ||= numbers.map { |i| i ** 2 }.reduce(:+)
+    @sum_of_squares ||= numbers.reduce { |sum, number| sum + (number ** 2) }
   end
 
   def square_of_sums
