@@ -2,4 +2,7 @@
 
 (defn hamming-distance
   [strand other]
-  (count (filter true? (map not= strand other))))
+  (->>
+    (map not= strand other)
+    (filter true?)
+    (count)))
