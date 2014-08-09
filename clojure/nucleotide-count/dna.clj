@@ -5,12 +5,12 @@
   ^{:private true}
   #{\A \C \G \T})
 
-(defn nucleotide-counts
-  [chain]
-  (merge (zipmap nucleotides (repeat 0)) (frequencies chain)))
+(defn nucleotide-counts [chain]
+  (->> chain
+       (frequencies)
+       (merge (zipmap nucleotides (repeat 0)))))
 
-(defn count
-  [nucleotide chain]
+(defn count [nucleotide chain]
   (cond
     (= nucleotide \U) 0
     (nucleotides nucleotide) ((nucleotide-counts chain) nucleotide)
