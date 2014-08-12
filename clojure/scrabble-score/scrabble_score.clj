@@ -33,6 +33,6 @@
   (scores (lower-case letter)))
 
 (defn score-word [word]
-  (->> (seq word)
+  (->> word
        (map score-letter)
-       (reduce +)))
+       (apply +)))
