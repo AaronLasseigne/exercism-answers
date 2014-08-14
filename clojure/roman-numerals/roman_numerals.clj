@@ -16,12 +16,12 @@
                  4 "IV"
                  1 "I"))
 
-(defn- amount->numerals [[output total] [amount numeral]]
+(defn- amount->numerals [[output total] amount numeral]
   (let [times (quot total amount)]
     [(apply str output (repeat times numeral))
      (rem total amount)]))
 
 (defn numerals [number]
   (->> conversions
-       (reduce amount->numerals ["" number])
+       (reduce-kv amount->numerals ["" number])
        (first)))
