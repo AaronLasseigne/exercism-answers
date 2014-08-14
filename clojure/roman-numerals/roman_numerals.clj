@@ -1,19 +1,26 @@
 (ns roman_numerals)
 
+(def ^:private conversions
+  [[1000 "M"]
+   [900 "CM"]
+   [500 "D"]
+   [400 "CD"]
+   [100 "C"]
+   [90 "XC"]
+   [50 "L"]
+   [40 "XL"]
+   [10 "X"]
+   [9 "IX"]
+   [5 "V"]
+   [4 "IV"]
+   [1 "I"]])
+
+(defn- amount->numerals [[output total] [amount numeral]]
+  (let [times (quot total amount)]
+    [(apply str output (repeat times numeral))
+     (rem total amount)]))
+
 (defn numerals [number]
-  (loop [remaining number
-         output ""]
-    (cond
-      (>= remaining 1000) (recur (- remaining 1000) (apply str output "M"))
-      (>= remaining  900) (recur (- remaining  900) (apply str output "CM"))
-      (>= remaining  500) (recur (- remaining  500) (apply str output "D"))
-      (>= remaining  400) (recur (- remaining  400) (apply str output "CD"))
-      (>= remaining  100) (recur (- remaining  100) (apply str output "C"))
-      (>= remaining   90) (recur (- remaining   90) (apply str output "XC"))
-      (>= remaining   50) (recur (- remaining   50) (apply str output "L"))
-      (>= remaining   40) (recur (- remaining   40) (apply str output "XL"))
-      (>= remaining   10) (recur (- remaining   10) (apply str output "X"))
-      (=  remaining    9) (apply str output "IX")
-      (>= remaining    5) (recur (- remaining 5) (apply str output "V"))
-      (=  remaining    4) (apply str output "IV")
-      (>= remaining    0) (apply str output (repeat remaining "I")))))
+  (->> conversions
+       (reduce amount->numerals ["" number])
+       (first)))
