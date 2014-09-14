@@ -4,17 +4,19 @@ class Sieve
   end
 
   def primes
+    return @primes if defined?(@primes)
+
     numbers = (2..@upper_bound).to_a
-    primes = []
+    @primes = []
 
     while numbers.size > 0
-      primes << (divisor = numbers.shift)
+      @primes << (divisor = numbers.shift)
 
       numbers.reject! do |number|
         number % divisor == 0
       end
     end
 
-    primes
+    @primes
   end
 end
