@@ -6,17 +6,28 @@ class Sieve
   def primes
     return @primes if defined?(@primes)
 
-    numbers = (2..@upper_bound).to_a
-    @primes = []
+    @primes = [nil, nil, *2..@upper_bound]
 
-    while numbers.size > 0
-      @primes << (divisor = numbers.shift)
+    possible_primes do |number|
+      next unless @primes[number]
 
-      numbers.reject! do |number|
-        number % divisor == 0
+      multiples(number) do |multiple|
+        @primes[multiple] = nil
       end
     end
 
-    @primes
+    @primes.compact
+  end
+
+  private
+
+  def possible_primes(&block)
+    2.upto(Math.sqrt(@upper_bound), &block)
+  end
+
+  def multiples(number, &block)
+    ((number ** 2)..@upper_bound)
+      .step(number)
+      .each(&block)
   end
 end
