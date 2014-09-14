@@ -26,8 +26,6 @@ class Sieve
   end
 
   def multiples(number, &block)
-    ((number ** 2)..@upper_bound)
-      .step(number)
-      .each(&block)
+    ((number ** 2)..@upper_bound).step(number, &block)
   end
 end
