@@ -5,7 +5,7 @@ class Binary
 
   def to_decimal
     @to_decimal ||= begin
-      return 0 if @number =~ /[^\d]/
+      return 0 if @number =~ /[^01]/
 
       sum = 0
       @number
