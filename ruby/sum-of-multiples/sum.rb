@@ -10,7 +10,7 @@ class SumOfMultiples
   end
 
   def to(number)
-    (3...number)
+    (1...number)
       .select { |n| multiple?(n) }
       .reduce(0, :+)
   end
