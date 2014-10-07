@@ -13,6 +13,8 @@ class Bst
     else
       send("#{dir}=", self.class.new(data))
     end
+
+    self
   end
 
   def each(&block)
