@@ -5,13 +5,13 @@
 
 (defn of [number]
   (loop [remaining number
-         divisors []
+         primes []
          divisor  2]
     (cond
-      (< remaining 2) divisors
+      (< remaining 2) primes
       (divisible? remaining divisor) (recur (/ remaining divisor)
-                                            (conj divisors divisor)
+                                            (conj primes divisor)
                                             divisor)
       :else (recur remaining
-                   divisors
+                   primes
                    (inc divisor)))))
