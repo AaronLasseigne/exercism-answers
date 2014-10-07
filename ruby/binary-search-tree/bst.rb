@@ -8,10 +8,10 @@ class Bst
   def insert(data)
     dir = direction(data)
 
-    if !send("#{dir}?")
-      send("#{dir}=", self.class.new(data))
-    else
+    if send("#{dir}?")
       public_send(dir).insert(data)
+    else
+      send("#{dir}=", self.class.new(data))
     end
   end
 
