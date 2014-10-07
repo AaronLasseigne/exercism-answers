@@ -8,7 +8,7 @@
          primes []
          divisor  2]
     (cond
-      (< remaining 2) primes
+      (= remaining 1) primes
       (divisible? remaining divisor) (recur (/ remaining divisor)
                                             (conj primes divisor)
                                             divisor)
