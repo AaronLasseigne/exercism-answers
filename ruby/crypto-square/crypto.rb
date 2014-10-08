@@ -4,7 +4,7 @@ class Crypto
   end
 
   def normalize_plaintext
-    @normalize_plaintext ||= @message.downcase.gsub(/[^0-9a-z]/, '')
+    @normalize_plaintext ||= @message.downcase.delete("^0-9a-z")
   end
 
   def size
