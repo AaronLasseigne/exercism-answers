@@ -26,6 +26,6 @@ class Crypto
   end
 
   private def groups_of(text, count)
-    text.chars.each_slice(count).map(&:join)
+    text.scan(/.{1,#{count}}/)
   end
 end
