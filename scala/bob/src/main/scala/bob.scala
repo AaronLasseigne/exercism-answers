@@ -10,14 +10,16 @@ class Bob {
       "Whatever."
   }
 
-  private def isSilent(msg: String) = msg.trim.isEmpty
+  private def isSilent(msg: String) =
+    msg.trim.isEmpty
 
   private def isShouting(msg: String) = {
     val loud  = msg.toUpperCase
-    var quiet = msg.toLowerCase
+    val quiet = msg.toLowerCase
 
-    msg == loud && quiet != loud
+    msg == loud && loud != quiet
   }
 
-  private def isAsking(msg: String) = msg.endsWith("?")
+  private def isAsking(msg: String) =
+    msg.endsWith("?")
 }
