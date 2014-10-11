@@ -1,15 +1,12 @@
 class Anagram(word: String) {
   def matches(words: Seq[String]) =
-    words.filter { isAnagram(word, _) }
+    words.filter(isAnagram)
 
-  private def isAnagram(word: String, anagram: String) = {
-    val lowerWord = word.toLowerCase
+  private lazy val lowerWord = word.toLowerCase
+
+  private def isAnagram(anagram: String) = {
     val lowerAnagram = anagram.toLowerCase
 
-    lowerWord != lowerAnagram &&
-    normalize(lowerWord).sameElements(normalize(lowerAnagram))
+    lowerWord != lowerAnagram && lowerWord.sorted == lowerAnagram.sorted
   }
-
-  private def normalize(word: String) =
-    word.toCharArray.sortBy(identity)
 }
