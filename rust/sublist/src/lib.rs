@@ -12,11 +12,11 @@ pub fn sublist<T: PartialEq>(a: &[T], b: &[T]) -> Comparison {
     };
 
     if a.len() < b.len() {
-        if is_sublist(a, b) {
+        if contains(a, b) {
             return Comparison::Sublist;
         }
     } else if b.len() < a.len() {
-        if is_sublist(b, a) {
+        if contains(b, a) {
             return Comparison::Superlist;
         }
     }
@@ -24,8 +24,6 @@ pub fn sublist<T: PartialEq>(a: &[T], b: &[T]) -> Comparison {
     Comparison::Unequal
 }
 
-fn is_sublist<T: PartialEq>(a: &[T], b: &[T]) -> bool {
-    if a.len() == 0 { return true; }
-
-    b.windows(a.len()).any(|slice| slice == a)
+fn contains<T: PartialEq>(a: &[T], b: &[T]) -> bool {
+    a.is_empty() || b.windows(a.len()).any(|slice| slice == a)
 }
