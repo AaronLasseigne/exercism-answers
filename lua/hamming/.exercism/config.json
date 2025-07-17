@@ -1,0 +1,26 @@
+{
+  "authors": [
+    "aarti"
+  ],
+  "contributors": [
+    "etandel",
+    "kytrinyx",
+    "robphoenix",
+    "ryanplusplus",
+    "trayo"
+  ],
+  "files": {
+    "solution": [
+      "hamming.lua"
+    ],
+    "test": [
+      "hamming_spec.lua"
+    ],
+    "example": [
+      ".meta/example.lua"
+    ]
+  },
+  "blurb": "Calculate the Hamming distance between two DNA strands.",
+  "source": "The Calculating Point Mutations problem at Rosalind",
+  "source_url": "https://rosalind.info/problems/hamm/"
+}
